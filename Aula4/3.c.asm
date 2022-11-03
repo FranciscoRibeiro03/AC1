@@ -19,10 +19,10 @@ main:	li	$t4, 0			# soma = 0
 	la	$t1, array		# $t1 = array
 	li	$t0, 0			# i = 0
 
-while:	bgeu	$t0, SIZE, endw		# while (i <= SIZE) {
+while:	bgtu	$t0, SIZE, endw		# while (i <= SIZE) {
 	sll	$t5, $t0, 2		#   offset = i * 4
-	addu	$t2, $t1, $t5		#   mem = array + i
-	lw	$t3, 0($t2)		#   valor = &mem (equivalente a array[i])
+	addu	$t2, $t1, $t5		#   mem = *array[i]
+	lw	$t3, 0($t2)		#   valor = array[i]
 	add	$t4, $t4, $t3		#   soma = soma + valor
 	addi	$t0, $t0, 1		#   i++
 	j	while			# }
